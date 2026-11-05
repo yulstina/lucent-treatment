@@ -1,10 +1,10 @@
 /* LUCENT 토큰: lucent-derm과 같은 값을 쓴다. */
 :root {
   --pearl: #FFFFFF;
-  --accent: #3B4FE0;
-  --accent-deep: #2A39B8;
-  --accent-soft: #EEF1FF;
-  --pop: #FFE45C;
+  --accent: #9A4A52;
+  --accent-deep: #6E2F37;
+  --accent-soft: #FBF1EA;
+  --pop: #E9CF9E;
   --ink: #182832;
   --muted: #52616C;
   --ice: #E7EFF3;
@@ -71,10 +71,10 @@ ul, ol { list-style: none; }
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 52px; padding: 0 28px; border-radius: 999px; border: 1px solid var(--ink);
   background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; text-decoration: none; cursor: pointer;
-  box-shadow: 0 10px 24px rgb(59 79 224 / .28);
+  box-shadow: 0 10px 24px rgb(110 47 55 / .30);
   transition: transform .3s var(--ease), background-color .3s, box-shadow .3s;
 }
-.button:hover { background: var(--accent-deep); box-shadow: 0 14px 30px rgb(59 79 224 / .36); }
+.button:hover { background: var(--accent-deep); box-shadow: 0 14px 30px rgb(110 47 55 / .38); }
 .button:hover { transform: translateY(-2px); }
 .button--ghost { background: transparent; color: var(--ink); border-color: var(--ink); box-shadow: none; }
 .button--ghost:hover { background: var(--accent-soft); box-shadow: none; }

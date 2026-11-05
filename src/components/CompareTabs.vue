@@ -52,7 +52,7 @@ function onKey(e) {
 <style scoped>
 .tablist { display: flex; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 4px; max-width: 420px; margin-bottom: 20px; }
 .tablist button { flex: 1; border: 0; background: transparent; padding: 12px 0; border-radius: 999px; font-size: 15px; color: var(--muted); cursor: pointer; transition: background-color .3s, color .3s; }
-.tablist button.on { background: var(--ink); color: #fff; font-weight: 700; }
+.tablist button.on { background: var(--accent); color: #fff; font-weight: 700; }
 .panel:not([hidden]) { animation: fade .5s var(--ease); }
 dl { display: grid; grid-template-columns: 160px 1fr; background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
 dt, dd { padding: 18px 22px; border-top: 1px solid var(--line); }
