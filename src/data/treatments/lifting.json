@@ -11,6 +11,13 @@
     "posterMobile": "/media/lift-model-mobile.webp",
     "alt": "턱선과 목선을 보여주는 리프팅 전용 모델 (AI 생성 이미지)"
   },
+  "event": {
+    "tag": "FIRST VISIT",
+    "title": "첫 상담 고객께 피부 탄력 진단 리포트를 드립니다.",
+    "desc": "상담 때 탄력 상태를 함께 확인해요.",
+    "cta": "지금 상담 예약",
+    "note": "진단 결과와 시술 계획은 개인마다 다릅니다. 포트폴리오용 가상 브랜드 예시입니다."
+  },
   "facts": [
     { "label": "시술 시간", "value": "약 30~40분", "note": "부위에 따라 다름" },
     { "label": "마취", "value": "크림 마취", "note": "필요 시" },

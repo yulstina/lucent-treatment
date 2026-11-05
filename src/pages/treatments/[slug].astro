@@ -8,6 +8,7 @@ import CompareTabs from '../../components/CompareTabs.vue';
 import CautionBox from '../../components/CautionBox.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import ConsultSection from '../../components/ConsultSection.astro';
+import EventBar from '../../components/EventBar.astro';
 import StickyCta from '../../components/StickyCta.astro';
 
 // 시술 하나 = 데이터 파일 하나. 새 시술은 src/data/treatments/ 에 JSON만 추가하면 페이지가 생긴다.
@@ -57,6 +58,7 @@ const jsonLd = [
 <BaseLayout title={title} description={t.description} jsonLd={jsonLd}>
   <main id="main">
     <TreatmentHero t={t} />
+    <EventBar event={t.event} />
     <ConcernList items={t.concerns} />
     <LayerDiagram layers={t.layers} note={t.principleNote} />
     <ProcessSteps steps={t.steps} />
@@ -74,5 +76,5 @@ const jsonLd = [
   <StickyCta />
 </BaseLayout>
 <style>
-  .cmp { background: #eef2f3; }
+  .cmp { background: var(--accent-soft); }
 </style>

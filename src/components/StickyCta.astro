@@ -15,10 +15,10 @@
 <style>
   .sticky { display: none; }
   @media (max-width: 767px) {
-    .sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: flex; gap: 8px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgb(245 246 245 / .94); backdrop-filter: blur(10px); border-top: 1px solid var(--line); transition: transform .4s var(--ease); }
+    .sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: flex; gap: 8px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgb(255 255 255 / .96); backdrop-filter: blur(10px); border-top: 1px solid var(--line); transition: transform .4s var(--ease); }
     .sticky.is-off { transform: translateY(110%); }
     .sticky a { flex: 1; text-align: center; padding: 14px; border-radius: 999px; font-weight: 700; font-size: 14px; text-decoration: none; }
     .a { border: 1px solid var(--ink); }
-    .b { background: var(--ink); color: #fff; }
+    .b { background: var(--accent); color: #fff; box-shadow: 0 8px 20px rgb(59 79 224 / .3); }
   }
 </style>

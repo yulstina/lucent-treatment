@@ -1,6 +1,10 @@
 /* LUCENT 토큰: lucent-derm과 같은 값을 쓴다. */
 :root {
-  --pearl: #F5F6F5;
+  --pearl: #FFFFFF;
+  --accent: #3B4FE0;
+  --accent-deep: #2A39B8;
+  --accent-soft: #EEF1FF;
+  --pop: #FFE45C;
   --ink: #182832;
   --muted: #52616C;
   --ice: #E7EFF3;
@@ -43,12 +47,12 @@ ul, ol { list-style: none; }
   font-size: 15px;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--accent);
 }
 .sec-title {
   font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: clamp(26px, 3.4vw, 40px);
+  font-weight: 700;
+  font-size: clamp(28px, 3.8vw, 44px);
   line-height: 1.35;
   margin: 10px 0 clamp(24px, 4vw, 48px);
 }
@@ -66,11 +70,14 @@ ul, ol { list-style: none; }
 .button {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 52px; padding: 0 28px; border-radius: 999px; border: 1px solid var(--ink);
-  background: var(--ink); color: #fff; font-weight: 700; text-decoration: none; cursor: pointer;
-  transition: transform .3s var(--ease), background-color .3s;
+  background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; text-decoration: none; cursor: pointer;
+  box-shadow: 0 10px 24px rgb(59 79 224 / .28);
+  transition: transform .3s var(--ease), background-color .3s, box-shadow .3s;
 }
+.button:hover { background: var(--accent-deep); box-shadow: 0 14px 30px rgb(59 79 224 / .36); }
 .button:hover { transform: translateY(-2px); }
-.button--ghost { background: transparent; color: var(--ink); }
+.button--ghost { background: transparent; color: var(--ink); border-color: var(--ink); box-shadow: none; }
+.button--ghost:hover { background: var(--accent-soft); box-shadow: none; }
 
 /* 스크롤 등장: JS가 .is-in을 붙인다. JS가 없거나 모션 줄이기면 그대로 보인다. */
 .js [data-reveal] {

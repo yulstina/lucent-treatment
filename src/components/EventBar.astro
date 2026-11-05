@@ -1,0 +1,27 @@
+---
+// 첫 상담 혜택 띠. 문구·유의 문구는 lifting.json의 event에서 가져온다.
+const { event } = Astro.props;
+---
+<aside class="event" aria-label="첫 상담 혜택">
+  <div class="wrap row">
+    <span class="tag">{event.tag}</span>
+    <p><b>{event.title}</b> <span>{event.desc}</span></p>
+    <a class="go" href="#consult">{event.cta} <span aria-hidden="true">→</span></a>
+  </div>
+  <p class="wrap note">{event.note}</p>
+</aside>
+<style>
+  .event { background: linear-gradient(100deg, var(--accent-deep), var(--accent) 55%, #6C7CFF); color: #fff; padding-block: 16px 10px; margin-top: clamp(32px, 5vw, 56px); }
+  .row { display: flex; align-items: center; gap: 16px; }
+  .tag { flex: none; background: var(--pop); color: var(--ink); font-weight: 800; font-size: 12px; letter-spacing: .08em; padding: 4px 12px; border-radius: 999px; }
+  .row p { flex: 1; font-size: 16px; line-height: 1.5; }
+  .row p span { opacity: .9; }
+  .go { flex: none; background: #fff; color: var(--accent-deep); font-weight: 800; text-decoration: none; padding: 10px 20px; border-radius: 999px; font-size: 14px; transition: transform .3s var(--ease); }
+  .go:hover { transform: translateY(-2px); }
+  .note { font-size: 12px; opacity: .85; margin-top: 8px; }
+  @media (max-width: 767px) {
+    .row { flex-wrap: wrap; gap: 10px; }
+    .row p { flex-basis: 100%; order: 2; }
+    .go { order: 3; width: 100%; text-align: center; }
+  }
+</style>
