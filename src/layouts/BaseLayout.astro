@@ -40,9 +40,9 @@ const path = Astro.url.pathname;
   <body>
     <a class="skip-link" href="#main">본문 바로가기</a>
     <header class="site-header">
-      <a class="wordmark" href="/" aria-label="루센트 덤 홈">LUCENT<span>DERM</span></a>
+      <a class="wordmark" href="https://lucent-build.vercel.app/" aria-label="루센트 덤 메인 사이트">LUCENT<span>DERM</span></a>
       <nav class="gnb" aria-label="주 메뉴">
-        <a href="/" aria-current={path === '/' ? 'page' : undefined}>홈</a>
+        <a href="https://lucent-build.vercel.app/">홈</a>
         <a href="/treatments/lifting/" aria-current={path.startsWith('/treatments/lifting') ? 'page' : undefined}>리프팅</a>
         <a href="https://lucent-build.vercel.app/treatments.html" target="_blank" rel="noopener">전체 진료 프로그램<span class="sr-only"> (새 창)</span></a>
       </nav>

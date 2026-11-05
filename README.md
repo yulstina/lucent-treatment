@@ -1,23 +1,23 @@
 # LUCENT DERM · 시술 안내 페이지 (Astro + Vue)
 
 포트폴리오용 가상 피부과 브랜드 LUCENT DERM의 **초음파 리프팅 시술 안내 상세페이지**와,
-그 페이지로 들어오는 **메인 슬라이드 배너 · 이벤트 팝업**입니다. 의료 정보는 일반 안내 수준이며 실제 진료·시술 사례가 아닙니다.
-AI 생성 이미지·영상을 사용했고(히어로는 리프팅 전용 모델 이미지), 상담 폼은 데모라 어디로도 전송하지 않습니다.
+입니다. 배너·팝업은 이 저장소가 아니라 기존 사이트(`yulstina/lucent-derm`, https://lucent-build.vercel.app)의 메인에 있고, 클릭하면 이 페이지로 연결됩니다. 의료 정보는 일반 안내 수준이며 실제 진료·시술 사례가 아닙니다.
+AI 생성 이미지를 사용했고, 상담 폼은 데모라 어디로도 전송하지 않습니다.
 
 ## 흐름
-메인 배너 / 팝업 → 시술 안내 상세 → 상담 예약 폼 (모바일은 하단 고정 버튼)
+기존 사이트 메인 배너 / 팝업 → 시술 안내 상세 → 상담 예약 폼 (모바일은 하단 고정 버튼)
 
 ## 구조
 - **Astro**: 페이지 뼈대, 섹션 마크업, JSON-LD (`.astro`)
-- **Vue**: 눌러서 바뀌는 부분 — 비교 탭, 상담 폼, 이벤트 팝업, 배너 슬라이드 (`.vue`, `client:*`로 필요할 때만 로드)
+- **Vue**: 눌러서 바뀌는 부분 — 비교 탭, 상담 폼 (`.vue`, `client:*`로 필요할 때만 로드)
 - 시술 하나 = 데이터 파일 하나: `src/data/treatments/*.json`을 추가하면 `/treatments/<slug>/` 페이지가 생깁니다.
 
 ```
 src/
   data/treatments/lifting.json   시술명, 핵심 정보, 단계, 비교표, 주의사항, FAQ
   layouts/BaseLayout.astro       head(메타·OG), JSON-LD, 헤더·푸터, 스크롤 등장
-  components/                    Hero · Concern · Layer(원리) · Process · Compare(Vue) · Caution · Faq · Consult(Vue) · Popup(Vue) · Banner(Vue)
-  pages/index.astro              메인(배너 + 팝업)
+  components/                    Hero · Concern · Layer(원리) · Process · Compare(Vue) · Caution · Faq · Consult(Vue)
+  pages/index.astro              리프팅 페이지로 이동(리다이렉트)
   pages/treatments/[slug].astro  시술 상세
 ```
 
@@ -29,7 +29,7 @@ src/
 
 ## 접근성 · 모션
 - axe-core (wcag2a/2aa/21aa) 위반 0건 확인
-- 탭: 좌우·Home/End 키, 팝업: `<dialog>` + 포커스 이동·복귀, 슬라이드: 일시정지 버튼
+- 탭: 좌우·Home/End 키, FAQ: 네이티브 `<details>`
 - `prefers-reduced-motion`이면 등장 효과·자동 재생 해제
 
 ## 의료광고 고려
