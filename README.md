@@ -41,4 +41,4 @@ npm install
 npm run dev      # 개발
 npm run build    # dist/ 생성 (Node 22.23.4 이상)
 ```
-배포는 Vercel(프레임워크 Astro 자동 인식). 배포 주소가 정해지면 환경변수 `SITE_URL`을 넣으면 canonical·JSON-LD url이 채워집니다.
+배포는 Vercel(프레임워크 Astro 자동 인식). 배포 주소: https://lucent-treatment.vercel.app (다른 주소를 쓰면 환경변수 `SITE_URL`로 바꾸면 canonical·OG·JSON-LD url이 따라갑니다).
