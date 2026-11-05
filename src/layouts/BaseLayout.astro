@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  jsonLd?: object | object[];
+  ogImage?: string;
+}
+const { title, description, jsonLd, ogImage = '/media/lift-hero-poster.webp' } = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const ogUrl = Astro.site ? new URL(ogImage, Astro.site).href : ogImage;
+const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const path = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {/* 포트폴리오용 가상 브랜드라 검색 색인은 막는다. */}
+    <meta name="robots" content="noindex,follow" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogUrl} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="theme-color" content="#F5F6F5" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;600&display=swap" />
+    {ld.map((item) => <script type="application/ld+json" set:html={JSON.stringify(item)} />)}
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문 바로가기</a>
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="루센트 덤 홈">LUCENT<span>DERM</span></a>
+      <nav class="gnb" aria-label="주 메뉴">
+        <a href="/" aria-current={path === '/' ? 'page' : undefined}>홈</a>
+        <a href="/treatments/lifting/" aria-current={path.startsWith('/treatments/lifting') ? 'page' : undefined}>리프팅</a>
+        <a href="https://lucent-build.vercel.app/treatments.html" target="_blank" rel="noopener">전체 진료 프로그램<span class="sr-only"> (새 창)</span></a>
+      </nav>
+      <a class="header-cta" href="/treatments/lifting/#consult">상담 예약</a>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p class="footer-logo" aria-hidden="true">LUCENT</p>
+        <p>© LUCENT DERM · Brand concept</p>
+        <p>포트폴리오용 가상 브랜드입니다. AI 이미지·영상은 실제 의료진·공간·시술 사례가 아니며, 상담 정보는 전송되지 않습니다.</p>
+      </div>
+    </footer>
+
+    <script>
+      // 스크롤 등장. 모션 줄이기 설정이면 CSS에서 바로 보이게 처리한다.
+      const items = document.querySelectorAll('[data-reveal]');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('is-in');
+            io.unobserve(e.target);
+          });
+        }, { rootMargin: '0px 0px -10% 0px' });
+        items.forEach((el) => io.observe(el));
+      } else {
+        items.forEach((el) => el.classList.add('is-in'));
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; gap: 32px;
+    height: var(--header-h); padding: 0 var(--gutter);
+    background: rgb(245 246 245 / .88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .wordmark { font-family: var(--font-en); font-size: 22px; letter-spacing: .14em; text-decoration: none; }
+  .wordmark span { font-size: 11px; margin-left: 6px; letter-spacing: .2em; color: var(--muted); }
+  .gnb { display: flex; gap: 28px; margin-left: auto; font-size: 14px; }
+  .gnb a { text-decoration: none; color: var(--muted); }
+  .gnb a[aria-current='page'], .gnb a:hover { color: var(--ink); }
+  .header-cta {
+    padding: 8px 18px; border-radius: 999px; background: var(--ink); color: #fff;
+    font-size: 13px; font-weight: 700; text-decoration: none;
+  }
+  @media (max-width: 767px) {
+    .gnb { display: none; }
+    .header-cta { margin-left: auto; }
+  }
+  .site-footer { padding: 64px 0 120px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+  .footer-logo { font-family: var(--font-en); font-size: clamp(48px, 10vw, 120px); letter-spacing: .12em; color: var(--ink); line-height: 1; margin-bottom: 24px; }
+</style>

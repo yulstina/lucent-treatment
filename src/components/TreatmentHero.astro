@@ -1,0 +1,57 @@
+---
+const { t } = Astro.props;
+---
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-media">
+    <picture>
+      <source media="(max-width: 767px)" srcset={t.hero.posterMobile} />
+      <img class="poster" src={t.hero.poster} alt="" width="1920" height="1080" fetchpriority="high" />
+    </picture>
+    <video class="clip" muted loop playsinline autoplay preload="metadata" aria-label={t.hero.alt}>
+      <source src={t.hero.videoMobile} media="(max-width: 767px)" type="video/mp4" />
+      <source src={t.hero.video} type="video/mp4" />
+    </video>
+  </div>
+  <div class="wrap hero-copy">
+    <nav class="crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><span>진료 프로그램</span><span aria-hidden="true">›</span><span aria-current="page">{t.category}</span></nav>
+    <span class="eyebrow">{t.eyebrow}</span>
+    <h1 id="hero-title">{t.name}</h1>
+    <p class="lead">{t.lead}</p>
+    <p class="sub">{t.sub}</p>
+    <div class="cta-row">
+      <a class="button" href="#consult">상담 예약하기 <span aria-hidden="true">→</span></a>
+      <a class="button button--ghost" href="#process">진행 과정 보기</a>
+    </div>
+  </div>
+  <ul class="wrap facts" aria-label="시술 핵심 정보">
+    {t.facts.map((f, i) => (
+      <li data-reveal style={`--i:${i}`}><b>{f.label}</b><span>{f.value}</span><small>{f.note}</small></li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .hero { position: relative; padding-bottom: clamp(32px, 5vw, 64px); }
+  .hero-media { position: absolute; inset: 0 0 auto 0; height: min(86vh, 760px); overflow: hidden; background: var(--ice); }
+  .hero-media img, .hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 30%; }
+  .hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(245 246 245 / .92) 0%, rgb(245 246 245 / .55) 42%, transparent 70%); }
+  .hero-copy { position: relative; z-index: 1; min-height: min(86vh, 760px); display: flex; flex-direction: column; justify-content: center; padding-block: 80px 120px; max-width: var(--wrap); }
+  .crumb { position: absolute; top: 24px; display: flex; gap: 8px; font-size: 12px; color: var(--muted); }
+  .crumb a { text-decoration: none; }
+  h1 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(38px, 6vw, 72px); line-height: 1.2; margin: 10px 0 14px; }
+  .lead { font-family: var(--font-serif); font-size: clamp(18px, 2vw, 24px); }
+  .sub { color: var(--muted); max-width: 30em; margin-top: 8px; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+  .facts { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: -72px; }
+  .facts li { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; display: grid; gap: 2px; box-shadow: 0 12px 32px rgb(24 40 50 / .06); }
+  .facts b { font-size: 12px; font-weight: 500; color: var(--muted); }
+  .facts span { font-size: 18px; font-weight: 700; }
+  .facts small { font-size: 12px; color: var(--muted); }
+  @media (max-width: 767px) {
+    .hero-media { height: 560px; }
+    .hero-media::after { background: linear-gradient(0deg, rgb(245 246 245 / .96) 0%, rgb(245 246 245 / .5) 45%, transparent 75%); }
+    .hero-copy { min-height: 560px; justify-content: flex-end; padding-block: 80px 40px; }
+    .facts { grid-template-columns: 1fr 1fr; margin-top: 0; }
+    .crumb { display: none; }
+  }
+</style>

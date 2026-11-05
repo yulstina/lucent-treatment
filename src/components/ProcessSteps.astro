@@ -1,0 +1,28 @@
+---
+const { steps } = Astro.props;
+---
+<section class="section" id="process" aria-labelledby="process-title">
+  <div class="wrap">
+    <span class="eyebrow">Process</span>
+    <h2 class="sec-title" id="process-title">상담부터 관리까지</h2>
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li data-reveal style={`--i:${i}`}>
+          <span class="n">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{s.title}</h3>
+          <p>{s.desc}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+<style>
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: s; }
+  .steps li { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 24px; position: relative; }
+  .n { font-family: var(--font-en); font-size: 36px; line-height: 1; color: var(--muted); }
+  h3 { font-size: 18px; margin: 18px 0 8px; }
+  p { font-size: 14px; color: var(--muted); }
+  .steps li:not(:last-child)::after { content: ''; position: absolute; right: -17px; top: 50px; width: 18px; height: 1px; background: var(--ink); }
+  @media (max-width: 991px) { .steps { grid-template-columns: 1fr 1fr; } .steps li::after { display: none; } }
+  @media (max-width: 575px) { .steps { grid-template-columns: 1fr; } }
+</style>

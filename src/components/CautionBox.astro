@@ -1,0 +1,20 @@
+---
+const { items, sources } = Astro.props;
+---
+<section class="section pad" aria-labelledby="caution-title">
+  <div class="wrap">
+    <span class="eyebrow">Before you decide</span>
+    <h2 class="sec-title" id="caution-title">시술 전 꼭 확인하세요</h2>
+    <div class="box" data-reveal>
+      <ul>{items.map((c) => <li>{c}</li>)}</ul>
+      <p class="src">의료 정보 참고: {sources.map((s) => <a href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>)}. 개인별 진료를 대체하지 않습니다.</p>
+    </div>
+  </div>
+</section>
+<style>
+  .pad { padding-top: 0; }
+  .box { background: var(--ice); border-radius: var(--radius); padding: clamp(24px, 4vw, 44px); }
+  li { position: relative; padding: 8px 0 8px 18px; }
+  li::before { content: ''; position: absolute; left: 2px; top: 1.1em; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
+  .src { margin-top: 20px; font-size: 13px; color: var(--muted); }
+</style>

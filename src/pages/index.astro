@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BannerSlider from '../components/BannerSlider.vue';
+import PromoPopup from '../components/PromoPopup.vue';
+
+const slides = [
+  {
+    theme: 'a', eyebrow: 'NOVEMBER · FIRST CONSULTATION',
+    title: '첫 상담 고객께\n피부 탄력 진단 리포트를'.replace('\n', ' '),
+    desc: '지금 내 피부의 탄력 상태를 확인하고, 나에게 맞는 계획을 세워보세요.',
+    cta: '상담 예약하기', href: '/treatments/lifting/#consult',
+    image: '/media/model-calm.webp', note: '진단 결과와 시술 계획은 개인마다 다릅니다. · 포트폴리오용 가상 브랜드 예시',
+  },
+  {
+    theme: 'b', eyebrow: 'LIFT & CONTOUR',
+    title: '자연스러운 선을, 섬세하게',
+    desc: '초음파 리프팅이 나에게 맞는지, 원리와 과정까지 미리 확인해 보세요.',
+    cta: '초음파 리프팅 안내', href: '/treatments/lifting/',
+    image: '/media/model-smile.webp', note: '효과와 회복에는 개인차가 있습니다.',
+  },
+];
+---
+<BaseLayout title="LUCENT DERM | 피부 본연의 빛을 만나다" description="LUCENT DERM 가상 피부과 브랜드. 이벤트 배너·팝업에서 시술 안내 상세페이지와 상담 예약까지 이어지는 흐름을 보여주는 포트폴리오 데모입니다.">
+  <main id="main">
+    <h1 class="sr-only">LUCENT DERM 홈</h1>
+    <BannerSlider slides={slides} client:load />
+    <section class="section" aria-labelledby="prog-title">
+      <div class="wrap">
+        <span class="eyebrow">Programs</span>
+        <h2 class="sec-title" id="prog-title">진료 프로그램</h2>
+        <a class="card" href="/treatments/lifting/">
+          <img src="/media/concern-lift.webp" alt="" width="900" height="1124" loading="lazy" />
+          <div>
+            <span class="eyebrow">탄력 · 리프팅</span>
+            <strong>초음파 리프팅</strong>
+            <p>이런 고민에 맞는지, 원리와 진행 과정, 주의사항까지 한 페이지에서 확인합니다.</p>
+            <span class="more">시술 안내 보기 →</span>
+          </div>
+        </a>
+        <p class="aside">다른 진료 프로그램은 <a href="https://lucent-build.vercel.app/treatments.html" target="_blank" rel="noopener">LUCENT DERM 전체 사이트<span class="sr-only"> (새 창)</span></a>에서 볼 수 있어요.</p>
+      </div>
+    </section>
+  </main>
+  <PromoPopup
+    client:load
+    title="첫 상담 고객께 피부 탄력 진단 리포트를"
+    desc="상담 때 피부 탄력 상태를 함께 확인하고, 나에게 맞는 계획을 세워드립니다."
+    cta="상담 예약하기"
+    href="/treatments/lifting/#consult"
+    image="/media/model-calm.webp"
+    note="진단 결과와 시술 계획은 개인마다 다릅니다. 포트폴리오용 가상 브랜드 예시입니다."
+  />
+</BaseLayout>
+<style>
+  .card { display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 20px; text-decoration: none; transition: transform .4s var(--ease), box-shadow .4s; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgb(24 40 50 / .1); }
+  .card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+  .card strong { display: block; font-family: var(--font-serif); font-size: 28px; margin: 6px 0; }
+  .card p { color: var(--muted); }
+  .more { display: inline-block; margin-top: 14px; font-weight: 700; }
+  .aside { margin-top: 24px; font-size: 14px; color: var(--muted); }
+  @media (max-width: 767px) { .card { grid-template-columns: 1fr; gap: 16px; } }
+</style>

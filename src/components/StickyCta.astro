@@ -1,0 +1,24 @@
+---
+// 모바일 하단 고정 버튼. 상담 폼이 화면에 보이면 숨긴다.
+---
+<div class="sticky" data-sticky>
+  <a class="a" href="tel:0000000000" aria-label="전화 문의 (가상 번호)">전화 문의</a>
+  <a class="b" href="#consult">상담 예약 <span aria-hidden="true">→</span></a>
+</div>
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-sticky]');
+  const form = document.getElementById('consult');
+  if (bar && form && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => bar.classList.toggle('is-off', e.isIntersecting), { threshold: 0.25 }).observe(form);
+  }
+</script>
+<style>
+  .sticky { display: none; }
+  @media (max-width: 767px) {
+    .sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: flex; gap: 8px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgb(245 246 245 / .94); backdrop-filter: blur(10px); border-top: 1px solid var(--line); transition: transform .4s var(--ease); }
+    .sticky.is-off { transform: translateY(110%); }
+    .sticky a { flex: 1; text-align: center; padding: 14px; border-radius: 999px; font-weight: 700; font-size: 14px; text-decoration: none; }
+    .a { border: 1px solid var(--ink); }
+    .b { background: var(--ink); color: #fff; }
+  }
+</style>

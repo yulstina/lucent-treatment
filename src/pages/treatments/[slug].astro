@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TreatmentHero from '../../components/TreatmentHero.astro';
+import ConcernList from '../../components/ConcernList.astro';
+import LayerDiagram from '../../components/LayerDiagram.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import CompareTabs from '../../components/CompareTabs.vue';
+import CautionBox from '../../components/CautionBox.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import ConsultSection from '../../components/ConsultSection.astro';
+import StickyCta from '../../components/StickyCta.astro';
+
+// 시술 하나 = 데이터 파일 하나. 새 시술은 src/data/treatments/ 에 JSON만 추가하면 페이지가 생긴다.
+export function getStaticPaths() {
+  const all = import.meta.glob('../../data/treatments/*.json', { eager: true });
+  return Object.values(all).map((m: any) => ({ params: { slug: m.default.slug }, props: { t: m.default } }));
+}
+const { t } = Astro.props;
+const title = `${t.name} 안내 | LUCENT DERM`;
+const url = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalWebPage',
+    name: title,
+    description: t.description,
+    inLanguage: 'ko',
+    ...(url && { url }),
+    about: {
+      '@type': 'MedicalProcedure',
+      name: t.name,
+      procedureType: 'https://schema.org/NoninvasiveProcedure',
+      howPerformed: t.steps.map((s: any) => `${s.title}: ${s.desc}`).join(' '),
+      preparation: t.faq.at(-1)?.a,
+      followup: t.steps.at(-1)?.desc,
+      ...(t.cautions && { risks: t.cautions.join(' ') }),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: 'ko',
+    mainEntity: t.faq.map((f: any) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '홈', ...(Astro.site && { item: new URL('/', Astro.site).href }) },
+      { '@type': 'ListItem', position: 2, name: '진료 프로그램' },
+      { '@type': 'ListItem', position: 3, name: t.name },
+    ],
+  },
+];
+---
+<BaseLayout title={title} description={t.description} jsonLd={jsonLd}>
+  <main id="main">
+    <TreatmentHero t={t} />
+    <ConcernList items={t.concerns} />
+    <LayerDiagram layers={t.layers} note={t.principleNote} />
+    <ProcessSteps steps={t.steps} />
+    <section class="section cmp" aria-labelledby="cmp-title">
+      <div class="wrap">
+        <span class="eyebrow">Compare</span>
+        <h2 class="sec-title" id="cmp-title">초음파와 고주파,<br />무엇이 다를까요</h2>
+        <CompareTabs rows={t.compare.rows} items={t.compare.items} client:visible />
+      </div>
+    </section>
+    <CautionBox items={t.cautions} sources={t.sources} />
+    <FaqAccordion items={t.faq} />
+    <ConsultSection />
+  </main>
+  <StickyCta />
+</BaseLayout>
+<style>
+  .cmp { background: #eef2f3; }
+</style>

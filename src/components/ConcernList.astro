@@ -1,0 +1,22 @@
+---
+const { items } = Astro.props;
+---
+<section class="section" aria-labelledby="concern-title">
+  <div class="wrap grid">
+    <div>
+      <span class="eyebrow">For you</span>
+      <h2 class="sec-title" id="concern-title">이런 변화가<br />느껴진다면</h2>
+    </div>
+    <ul class="check">
+      {items.map((c, i) => <li data-reveal style={`--i:${i}`}>{c}</li>)}
+    </ul>
+  </div>
+</section>
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(24px, 6vw, 96px); align-items: start; }
+  .check li { position: relative; padding: 20px 0 20px 40px; border-top: 1px solid var(--line); font-size: clamp(16px, 1.6vw, 19px); }
+  .check li:last-child { border-bottom: 1px solid var(--line); }
+  .check li::before { content: ''; position: absolute; left: 4px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; border: 1.5px solid var(--ink); }
+  .check li::after { content: ''; position: absolute; left: 10px; top: 50%; width: 8px; height: 4px; margin-top: -4px; border-left: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); transform: rotate(-45deg); }
+  @media (max-width: 767px) { .grid { grid-template-columns: 1fr; } }
+</style>

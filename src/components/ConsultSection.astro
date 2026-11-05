@@ -1,0 +1,19 @@
+---
+import ConsultForm from './ConsultForm.vue';
+---
+<section class="section grad" id="consult" aria-labelledby="consult-title">
+  <div class="wrap grid">
+    <div>
+      <span class="eyebrow">Consultation</span>
+      <h2 class="sec-title" id="consult-title">나의 피부 이야기,<br />편하게 남겨주세요</h2>
+      <p>고민과 원하는 변화를 남겨 주시면 연락 가능한 시간에 맞춰 안내하는 흐름을 보여주는 데모 폼입니다.</p>
+    </div>
+    <ConsultForm client:visible />
+  </div>
+</section>
+<style>
+  .grad { background: linear-gradient(160deg, var(--ice), var(--lavender)); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 6vw, 96px); align-items: start; }
+  .grid > div > p { color: var(--muted); max-width: 26em; }
+  @media (max-width: 767px) { .grid { grid-template-columns: 1fr; } }
+</style>
