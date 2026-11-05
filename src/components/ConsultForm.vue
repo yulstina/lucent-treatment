@@ -82,7 +82,7 @@ legend { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
 .field input[aria-invalid='true'] { border-color: #b3402a; }
 .err { min-height: 1.4em; font-size: 13px; color: #b3402a; }
 .agree { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--muted); margin: 6px 0 2px; }
-.submit { width: 100%; min-height: 56px; margin-top: 10px; border: 0; border-radius: 999px; background: var(--accent); box-shadow: 0 10px 24px rgb(110 47 55 / .28); color: #fff; font-weight: 700; font-size: 16px; cursor: pointer; }
+.submit { width: 100%; min-height: 56px; margin-top: 10px; border: 0; border-radius: 999px; background: var(--accent); box-shadow: 0 10px 24px rgb(20 40 58 / .28); color: #fff; font-weight: 700; font-size: 16px; cursor: pointer; }
 .done h3 { font-family: var(--font-serif); margin-bottom: 10px; }
 .done p { color: var(--muted); }
 .ghost { margin-top: 20px; border: 1px solid var(--ink); background: transparent; border-radius: 999px; padding: 12px 24px; cursor: pointer; }
