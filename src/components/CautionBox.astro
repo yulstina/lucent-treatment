@@ -1,7 +1,7 @@
 ---
 const { items, sources } = Astro.props;
 ---
-<section class="section pad" aria-labelledby="caution-title">
+<section class="section" aria-labelledby="caution-title">
   <div class="wrap">
     <span class="eyebrow">Before you decide</span>
     <h2 class="sec-title" id="caution-title">시술 전 꼭 확인하세요</h2>
@@ -12,7 +12,6 @@ const { items, sources } = Astro.props;
   </div>
 </section>
 <style>
-  .pad { padding-top: 0; }
   .box { background: var(--ice); border-radius: var(--radius); padding: clamp(24px, 4vw, 44px); }
   li { position: relative; padding: 8px 0 8px 18px; }
   li::before { content: ''; position: absolute; left: 2px; top: 1.1em; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
