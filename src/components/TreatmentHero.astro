@@ -5,12 +5,8 @@ const { t } = Astro.props;
   <div class="hero-media">
     <picture>
       <source media="(max-width: 767px)" srcset={t.hero.posterMobile} />
-      <img class="poster" src={t.hero.poster} alt="" width="1920" height="1080" fetchpriority="high" />
+      <img class="poster" src={t.hero.poster} alt="" width="1920" height="1074" fetchpriority="high" role="img" alt={t.hero.alt} />
     </picture>
-    <video class="clip" muted loop playsinline autoplay preload="metadata" aria-label={t.hero.alt}>
-      <source src={t.hero.videoMobile} media="(max-width: 767px)" type="video/mp4" />
-      <source src={t.hero.video} type="video/mp4" />
-    </video>
   </div>
   <div class="wrap hero-copy">
     <nav class="crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><span>진료 프로그램</span><span aria-hidden="true">›</span><span aria-current="page">{t.category}</span></nav>
@@ -33,7 +29,7 @@ const { t } = Astro.props;
 <style>
   .hero { position: relative; padding-bottom: clamp(32px, 5vw, 64px); }
   .hero-media { position: absolute; inset: 0 0 auto 0; height: min(86vh, 760px); overflow: hidden; background: var(--ice); }
-  .hero-media img, .hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 30%; }
+  .hero-media img, .hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 20%; }
   .hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(245 246 245 / .92) 0%, rgb(245 246 245 / .55) 42%, transparent 70%); }
   .hero-copy { position: relative; z-index: 1; min-height: min(86vh, 760px); display: flex; flex-direction: column; justify-content: center; padding-block: 80px 120px; max-width: var(--wrap); }
   .crumb { position: absolute; top: 24px; display: flex; gap: 8px; font-size: 12px; color: var(--muted); }
@@ -48,9 +44,10 @@ const { t } = Astro.props;
   .facts span { font-size: 18px; font-weight: 700; }
   .facts small { font-size: 12px; color: var(--muted); }
   @media (max-width: 767px) {
-    .hero-media { height: 560px; }
-    .hero-media::after { background: linear-gradient(0deg, rgb(245 246 245 / .96) 0%, rgb(245 246 245 / .5) 45%, transparent 75%); }
-    .hero-copy { min-height: 560px; justify-content: flex-end; padding-block: 80px 40px; }
+    .hero-media { position: relative; height: 420px; }
+    .hero-media img { object-position: 62% 15%; }
+    .hero-media::after { background: linear-gradient(0deg, rgb(245 246 245 / 1) 0%, transparent 28%); }
+    .hero-copy { min-height: 0; justify-content: flex-start; padding-block: 0 32px; margin-top: -28px; }
     .facts { grid-template-columns: 1fr 1fr; margin-top: 0; }
     .crumb { display: none; }
   }

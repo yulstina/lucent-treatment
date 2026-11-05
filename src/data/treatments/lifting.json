@@ -6,12 +6,10 @@
   "lead": "자연스러운 선을, 섬세하게.",
   "sub": "피부 겉이 아닌 깊은 층부터, 나에게 맞는 탄력 계획을 세웁니다.",
   "description": "LUCENT DERM 초음파 리프팅 안내. 이런 고민에 맞는지, 시술 원리와 진행 과정, 고주파 리프팅과의 차이, 주의사항과 자주 묻는 질문을 확인하고 상담을 예약하세요.",
-  "hero": {
-    "video": "/media/lift-hero.mp4",
-    "videoMobile": "/media/lift-hero-mobile.mp4",
-    "poster": "/media/lift-hero-poster.webp",
-    "posterMobile": "/media/lift-hero-poster-mobile.webp",
-    "alt": "은은한 빛 속에서 정면을 바라보는 루센트 브랜드 모델 (AI 영상)"
+   "hero": {
+    "poster": "/media/lift-model.webp",
+    "posterMobile": "/media/lift-model-mobile.webp",
+    "alt": "턱선과 목선을 보여주는 리프팅 전용 모델 (AI 생성 이미지)"
   },
   "facts": [
     { "label": "시술 시간", "value": "약 30~40분", "note": "부위에 따라 다름" },
